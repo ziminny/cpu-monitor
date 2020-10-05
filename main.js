@@ -37,7 +37,7 @@ function createWidowDate()
          setInterval( () => {
            let date = fullDate()
              mainWindow.webContents.send('date',date);
-         },100);
+         },1000);
 
 createwindowSystem(width);
 createwindowDisks(width)
@@ -68,7 +68,7 @@ function createwindowSystem(width)
       setInterval( () => {
           system = new System(os);
           system.getObjSystem(windowSystem);
-      },100);
+      },1000);
 }
 
 function createwindowDisks(width)
@@ -98,7 +98,7 @@ function createwindowDisks(width)
           system = new Disks(si);
           system.getDisks(windowDisks);
 
-      },100);
+      },1000);
 }
 
 app.on("ready" , () => setTimeout( createWidowDate , 1000) );
