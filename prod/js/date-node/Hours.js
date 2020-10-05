@@ -39,5 +39,3 @@ exports.Hours = class Hours extends DateAndHours
           return  this.full();
     }
 }
-
- 
