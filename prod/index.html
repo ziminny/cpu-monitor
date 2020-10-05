@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../prod/css/all.css">
+  </head>
+  <body>
+    <div class="container">
+
+          <div class="row">
+
+                  <div class="col-header">
+                  </div>
+
+                  <div class="col-body">
+                      <div class="left-card">
+                      </div>
+
+                      <div class="right-card">
+                      </div>
+                 </div>
+        </div>
+
+    </div>
+
+
+  </body>
+
+  <script type="text/javascript">
+
+    const electron = require('electron');
+    const ipcRenderer = electron.ipcRenderer;
+
+  var temperature = ipcRenderer.on('date',(event,data) => {
+    let hours = document.querySelector(".col-header");
+    hours.innerHTML = data.hours
+
+    var dayOfS = document.querySelector(".left-card");
+    dayOfS.innerHTML  = data.day;
+
+    var completeDate = document.querySelector(".right-card");
+    completeDate.innerHTML  = data.date;
+
+
+  })
+
+  </script>
+</html>

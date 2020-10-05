@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../prod/css/all.css">
+  </head>
+  <body>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-header">
+              SISTEMA
+            </div>
+
+            <div class="col-body">
+                <div class="left-card">
+                  Uso da CPU
+                <hr class="hr cpu-hr">
+            </div>
+
+            <div class="right-card">
+                <span class="cpu"></span>
+                </div>
+            </div>
+
+            <div class="col-body">
+                <div class="left-card">
+                  Uso da RAM
+                  <hr class="hr mem-hr">
+            </div>
+
+            <div class="right-card">
+                <span class="mem"></span>
+                </div>
+            </div>
+
+      </div>
+
+ </div>
+
+    <script type="text/javascript">
+
+      //240px 100%
+
+      const electron = require('electron');
+      const ipcRenderer = electron.ipcRenderer;
+
+    var temperature = ipcRenderer.on('system',(event,data) => {
+      let cpu = document.querySelector(".cpu");
+      cpu.innerHTML = data.cpu+"%"
+
+      let mem = document.querySelector(".mem");
+      mem.innerHTML = data.mem+"%"
+
+      let cpuHr = document.querySelector('.cpu-hr');
+      let memHr = document.querySelector('.mem-hr');
+
+      let convertProcessInPercentCpu = 240 * data.cpu / 100
+      cpuHr.style.width = `${convertProcessInPercentCpu}px`
+      cpuHr.style.border = fillBorderHr(data.cpu)
+
+      let convertProcessInPercentMem = 240 * data.mem / 100
+      memHr.style.width = `${convertProcessInPercentMem}px`
+      memHr.style.border = fillBorderHr(data.mem)
+
+
+
+    })
+
+    function fillBorderHr(percent)
+    {
+      if(percent < 50) return '1px solid rgba(25,135,13,0.6)';
+      if(percent < 80) return '1px solid rgba(25,91,158,0.6)';
+      return '1px solid rgba(130,5,5,0.6)';
+    }
+
+    </script>
+
+
+</body>
+
+
+  </body>
+</html>

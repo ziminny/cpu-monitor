@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../prod/css/all.css">
+  </head>
+  <body>
+
+  <div class="container">
+
+    <div class="row">
+
+            <div class="col-header">
+              DISCOS
+            </div>
+
+    </div>
+
+ </div>
+
+    <script type="text/javascript">
+
+      //240px 100%
+
+      const electron = require('electron');
+      const ipcRenderer = electron.ipcRenderer;
+
+    var temperature = ipcRenderer.on('disks',(event,data) => {
+
+      let row = document.querySelector('.row');
+
+      let verify = row.querySelector(".col-body");
+
+      if(verify == null) {
+
+      data.forEach((item, i) => {
+          let divBody = document.createElement("div");
+          let divLeft = document.createElement("div");
+          let divRight = document.createElement("div");
+          let hr = document.createElement("hr");
+          divBody.classList.add("col-body");
+          divLeft.classList.add("left-card");
+          hr.classList.add("hr");
+          hr.classList.add("hr"+i);
+          divRight.classList.add("right-card");
+          divLeft.innerHTML  = data[i].fs;
+          divRight.innerHTML  = data[i].use+"%";
+          divLeft.appendChild(hr);
+          divBody.appendChild(divLeft);
+          divBody.appendChild(divRight);
+          row.appendChild(divBody)
+
+          let hrProcess = document.querySelector(".hr"+i)
+
+          let convertProcessInPercentDisk = 240 * data[i].use / 100
+          hrProcess.style.width = `${convertProcessInPercentDisk}px`
+          hrProcess.style.border = fillBorderHr(data[i].use)
+
+
+
+      });
+
+
+
+
+
+
+}
+
+
+    })
+
+    function fillBorderHr(percent)
+    {
+      if(percent < 50) return '1px solid rgba(25,135,13,0.6)';
+      if(percent < 80) return '1px solid rgba(25,91,158,0.6)';
+      return '1px solid rgba(130,5,5,0.6)';
+    }
+
+    </script>
+
+
+</body>
+
+
+  </body>
+</html>
