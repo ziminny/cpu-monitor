@@ -20,7 +20,7 @@ function createWidowDate()
            width:310,
            x:width-310,
            y:40,
-           alwaysOnTop: true,
+           //alwaysOnTop: true,
            frame : false,
            transparent:true,
            webPreferences: {
@@ -52,7 +52,7 @@ function createwindowSystem(width)
         width:310,
         x:width-310,
         y:115,
-        alwaysOnTop: true,
+        //alwaysOnTop: true,
         frame : false,
         transparent:true,
         webPreferences: {
@@ -75,11 +75,11 @@ function createwindowDisks(width)
 {
   const windowDisks = new BrowserWindow(
     {
-        height: 200,
+        height: 140,
         width:310,
         x:width-310,
         y:230,
-        alwaysOnTop: true,
+      //  alwaysOnTop: true,
         frame : false,
         transparent:true,
         webPreferences: {
