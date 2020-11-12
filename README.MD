@@ -1,5 +1,5 @@
-### Monitor de atividades feito em electron
-# iniciar
+# Monitor de atividades feito em electron
+### iniciar
 ```
 npm install
 npm start
